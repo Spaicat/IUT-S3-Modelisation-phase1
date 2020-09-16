@@ -12,21 +12,25 @@ public class Taverne extends Etat {
         super(gimli);
         getIA().setTemps(getIA().getTemps() + getuTime()); //Ajout du temps
         getIA().changeAlcool(-0.1);
-        getIA().boitBiere(3);
     }
 
     @Override
     public Etat transition() {
-        //S'il a trop bu
-        if (getIA().getAlcool() > 8) {
-            return new Lit(this.getIA());
-        }
+
         //S'il se bat (5% + 15%*GrammeAlcool de chance)
-        else if ((int)(Math.random()*100+1) <= (5 + 15*this.getIA().getAlcool())) {
+        if ((int)(Math.random()*101) <= (5 + 15*this.getIA().getAlcool())) {
             return new TravailMine(this.getIA());
-        }
+        } 
         else {
-            return new Taverne(this.getIA());
+            getIA().boitBiere((int)(Math.random()*7)); // nombre de bières que Gimli prnd a la taverne
+            //S'il a trop bu
+            if (getIA().getAlcool() > 8) {
+                System.out.println("je fais un bon dodo"); // il fait un bon dodo
+                return new Lit(this.getIA());
+            }                   
+            else {
+                return new Taverne(this.getIA());
+            }
         }
     }
 
