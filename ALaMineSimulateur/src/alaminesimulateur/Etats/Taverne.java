@@ -16,16 +16,14 @@ public class Taverne extends Etat {
 
     @Override
     public Etat transition() {
-
         //S'il se bat (5% + 15%*GrammeAlcool de chance)
         if ((int)(Math.random()*101) <= (5 + 15*this.getIA().getAlcool())) {
             return new TravailMine(this.getIA());
-        } 
+        }
         else {
             getIA().boitBiere((int)(Math.random()*7)); // nombre de bières que Gimli prnd a la taverne
             //S'il a trop bu
             if (getIA().getAlcool() > 8) {
-                System.out.println("je fais un bon dodo"); // il fait un bon dodo
                 return new Lit(this.getIA());
             }                   
             else {

@@ -12,10 +12,10 @@ public class ALaMineSimulateur {
     public static void main(String[] args) {
         Gimli gimli = new Gimli();
         gimli.start();
-       /* int min = 100;
+        /*int min = 100;
         int max = 0;
         for (int i = 0; i < 1000; i++) {
-            int oui = (int)(Math.random()*101);
+            int oui = (int)(Math.random()*3);
             System.out.println(oui);
             if (oui < min)
                 min = oui;
