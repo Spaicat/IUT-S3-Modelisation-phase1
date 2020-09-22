@@ -17,10 +17,11 @@ public class TravailMine extends Etat {
     @Override
     public Etat transition() {
         //S'il casse sa pioche (15% + 8%*GrammeAlcool de chance)
-        if ((int)(Math.random()*100+1) <= (15 + 8*this.getIA().getAlcool())) {
+        if ((int)(Math.random()*101) <= (15 + 8*this.getIA().getAlcool())) {
             return new Forgeron(this.getIA());
         }
         else {
+            getIA().setprobaMineMine(1);
             return new PauseMine(this.getIA());
         }
     }

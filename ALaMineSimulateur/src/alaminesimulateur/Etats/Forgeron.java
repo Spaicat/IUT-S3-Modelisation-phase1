@@ -18,10 +18,11 @@ public class Forgeron extends Etat {
     public Etat transition() {
         //Si les gardes ne le rattrapent pas (1 chance sur 3)
         if ((int)(Math.random()*3) == 0) {
-            getIA().setProbaT(getIA().getProbaT()+1);
+            getIA().setProbaMineTaverne(1);
             return new Taverne(this.getIA());
         }
         else {
+            getIA().setprobaMineMine(1);
             return new TravailMine(this.getIA());
         }
     }

@@ -19,9 +19,11 @@ public class PauseMine extends Etat {
     public Etat transition() {
         //S'il a trop bu
         if (getIA().getAlcool() > 8) {
+            getIA().setprobaMineRepos(1);
             return new Lit(this.getIA());
         }
         else {
+            getIA().setprobaMineMine(1);
             return new TravailMine(this.getIA());
         }
     }

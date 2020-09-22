@@ -15,8 +15,17 @@ public class Gimli {
     //Temps en minutes
     private int temps;
     private Etat etatCourant;
-    private float probaT; 
-    private float nombreAction;
+    private float probaMineTaverne; 
+    private float probaMineRepos;
+    private float probaMineMine;
+    private float probaTaverneMine; 
+    private float probaTaverneTaverne;
+    private float probaTaverneRepos;
+    private float probaReposRepos;
+    private float probaReposMine;
+    private float ActionMine;
+    private float ActionTaverne;
+    private float ActionRepos;
 
     public double getAlcool() {
         return alcool;
@@ -42,20 +51,49 @@ public class Gimli {
         this.temps = temps;
     }
     
-    public void setProbaT( float probaT){
-        this.probaT = probaT; 
+    public void setProbaMineTaverne( float probaT){
+        this.probaMineTaverne += probaT; 
+        this.ActionTaverne += probaT;
+        
     }
+    public void setprobaMineRepos( float probaT){
+        this.probaMineRepos += probaT; 
+        this.ActionRepos += probaT;
+    }
+    public void setprobaMineMine( float probaT){
+        this.probaMineMine += probaT;
+        this.ActionMine += probaT;
+    }
+    public void setprobaTaverneMine( float probaT){
+        this.probaTaverneMine += probaT; 
+        this.ActionMine += probaT;
+    }
+    public void setprobaTaverneTaverne( float probaT){
+        this.probaTaverneTaverne += probaT; 
+        this.ActionTaverne += probaT;
+    }
+    public void setprobaTaverneRepos( float probaT){
+        this.probaTaverneRepos += probaT; 
+        this.ActionRepos += probaT;
+    }
+    public void setprobaReposRepos( float probaT){
+        this.probaReposRepos += probaT; 
+        this.ActionRepos += probaT;
+    }
+    public void setprobaReposMine( float probaT){
+        this.probaReposMine += probaT; 
+        this.ActionMine += probaT;
+    }    
     
-    public float getProbaT(){
-        return probaT;
-    }
 
     public Gimli() {
         this.alcool = 0;
         this.poids = 102;
         this.temps = 0;
         this.etatCourant = new TravailMine(this);
-        this.nombreAction = 1;
+        this.ActionMine = 1;
+        this.ActionRepos = 1;
+        this.ActionTaverne = 1;
     }
 
     public void start() {
@@ -67,10 +105,21 @@ public class Gimli {
             }*/
             //System.out.println(etatCourant.getClass().getSimpleName() + " | Alcoolémie : " + alcool);
             etatCourant = etatCourant.transition();
-            this.nombreAction += 1;
         }
         //System.out.println(etatCourant.getClass().getSimpleName() + " | " + alcool);
-        System.out.println("La probabilité que Gimli aille a la taverne est de "+ this.probaT / this.nombreAction);
+        System.out.println("La probabilité que Gimli aille a la taverne depuis la mine est de "+ this.probaMineTaverne / this.ActionTaverne);
+        System.out.println("La probabilité que Gimli aille au repos depuis la mine est de "+ this.probaMineRepos / this.ActionRepos);
+        System.out.println("La probabilité que Gimli aille a la mine depuis la mine est de "+ this.probaMineMine / this.ActionMine);
+        System.out.println("La probabilité que Gimli aille a la mine depuis la taverne est de "+ this.probaTaverneMine / this.ActionMine);
+        System.out.println("La probabilité que Gimli aille au repos depuis la taverne est de "+ this.probaTaverneTaverne / this.ActionTaverne);
+        System.out.println("La probabilité que Gimli aille a la taverne depuis la taverne est de "+ this.probaTaverneRepos / this.ActionRepos);
+        System.out.println("La probabilité que Gimli aille au repos depuis le repos est de "+ this.probaReposRepos / this.ActionRepos);
+        System.out.println("La probabilité que Gimli aille a la mine depuis le repos est de "+ this.probaReposMine / this.ActionMine);
+        System.out.println("proba general : "+(this.probaMineTaverne+this.probaMineRepos+this.probaMineMine+this.probaTaverneMine+this.probaTaverneTaverne+ this.probaTaverneRepos+this.probaReposRepos+this.probaReposMine ) / (this.ActionMine+this.ActionRepos+this.ActionTaverne));
+        System.out.println("proba qu'il aille allah taverne : "+(this.probaMineTaverne+this.probaTaverneTaverne)/this.ActionTaverne);
+        System.out.println("proba qu'il aille au repos : "+(this.probaMineRepos+this.probaTaverneRepos+this.probaReposRepos)/this.ActionRepos);
+        System.out.println("proba qu'il aille a la mine : "+(this.probaMineMine+this.probaTaverneMine+this.probaReposMine)/this.ActionMine);
+    
     }
 
     /**
