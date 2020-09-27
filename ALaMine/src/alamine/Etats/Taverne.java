@@ -10,7 +10,7 @@ public class Taverne extends Etat {
 
     public Taverne(Gimli gimli) {
         super(gimli);
-        getIA().setTemps(getIA().getTemps() + getuTime()); //Ajout du temps
+        getIA().ajoutTemps(getuTime()); //Ajout du temps
     }
 
     @Override

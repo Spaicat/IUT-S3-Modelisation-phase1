@@ -53,12 +53,12 @@ public class Gimli {
     
     public void setProbaMineTaverne( float probaT){
         this.probaMineTaverne += probaT; 
-        this.ActionTaverne += probaT;
+        this.ActionMine += probaT;
         
     }
     public void setprobaMineRepos( float probaT){
         this.probaMineRepos += probaT; 
-        this.ActionRepos += probaT;
+        this.ActionMine += probaT;
     }
     public void setprobaMineMine( float probaT){
         this.probaMineMine += probaT;
@@ -66,7 +66,7 @@ public class Gimli {
     }
     public void setprobaTaverneMine( float probaT){
         this.probaTaverneMine += probaT; 
-        this.ActionMine += probaT;
+        this.ActionTaverne += probaT;
     }
     public void setprobaTaverneTaverne( float probaT){
         this.probaTaverneTaverne += probaT; 
@@ -74,7 +74,7 @@ public class Gimli {
     }
     public void setprobaTaverneRepos( float probaT){
         this.probaTaverneRepos += probaT; 
-        this.ActionRepos += probaT;
+        this.ActionTaverne += probaT;
     }
     public void setprobaReposRepos( float probaT){
         this.probaReposRepos += probaT; 
@@ -82,7 +82,7 @@ public class Gimli {
     }
     public void setprobaReposMine( float probaT){
         this.probaReposMine += probaT; 
-        this.ActionMine += probaT;
+        this.ActionRepos += probaT;
     }    
     
 
@@ -107,18 +107,18 @@ public class Gimli {
             etatCourant = etatCourant.transition();
         }
         //System.out.println(etatCourant.getClass().getSimpleName() + " | " + alcool);
-        System.out.println("La probabilité que Gimli aille a la taverne depuis la mine est de "+ this.probaMineTaverne / this.ActionTaverne);
-        System.out.println("La probabilité que Gimli aille au repos depuis la mine est de "+ this.probaMineRepos / this.ActionRepos);
+        System.out.println("La probabilité que Gimli aille a la taverne depuis la mine est de "+ this.probaMineTaverne / this.ActionMine);
+        System.out.println("La probabilité que Gimli aille au repos depuis la mine est de "+ this.probaMineRepos / this.ActionMine);
         System.out.println("La probabilité que Gimli aille a la mine depuis la mine est de "+ this.probaMineMine / this.ActionMine);
-        System.out.println("La probabilité que Gimli aille a la mine depuis la taverne est de "+ this.probaTaverneMine / this.ActionMine);
-        System.out.println("La probabilité que Gimli aille au repos depuis la taverne est de "+ this.probaTaverneTaverne / this.ActionTaverne);
-        System.out.println("La probabilité que Gimli aille a la taverne depuis la taverne est de "+ this.probaTaverneRepos / this.ActionRepos);
+        System.out.println("La probabilité que Gimli aille a la mine depuis la taverne est de "+ this.probaTaverneMine / this.ActionTaverne);
+        System.out.println("La probabilité que Gimli aille au repos depuis la taverne est de "+ this.probaTaverneRepos / this.ActionTaverne);
+        System.out.println("La probabilité que Gimli aille a la taverne depuis la taverne est de "+ this.probaTaverneTaverne / this.ActionTaverne);
         System.out.println("La probabilité que Gimli aille au repos depuis le repos est de "+ this.probaReposRepos / this.ActionRepos);
-        System.out.println("La probabilité que Gimli aille a la mine depuis le repos est de "+ this.probaReposMine / this.ActionMine);
+        System.out.println("La probabilité que Gimli aille a la mine depuis le repos est de "+ this.probaReposMine / this.ActionRepos);
         System.out.println("proba general : "+(this.probaMineTaverne+this.probaMineRepos+this.probaMineMine+this.probaTaverneMine+this.probaTaverneTaverne+ this.probaTaverneRepos+this.probaReposRepos+this.probaReposMine ) / (this.ActionMine+this.ActionRepos+this.ActionTaverne));
-        System.out.println("proba qu'il aille allah taverne : "+(this.probaMineTaverne+this.probaTaverneTaverne)/this.ActionTaverne);
-        System.out.println("proba qu'il aille au repos : "+(this.probaMineRepos+this.probaTaverneRepos+this.probaReposRepos)/this.ActionRepos);
-        System.out.println("proba qu'il aille a la mine : "+(this.probaMineMine+this.probaTaverneMine+this.probaReposMine)/this.ActionMine);
+        System.out.println("proba qu'il parte de la taverne : "+(this.probaTaverneMine+this.probaTaverneRepos+this.probaTaverneTaverne)/this.ActionTaverne);
+        System.out.println("proba qu'il parte du repos : "+(this.probaReposMine+this.probaReposRepos)/this.ActionRepos);
+        System.out.println("proba qu'il parte de la mine : "+(this.probaMineMine+this.probaMineRepos+this.probaMineTaverne)/this.ActionMine);
     
     }
 

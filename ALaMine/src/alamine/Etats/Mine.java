@@ -15,7 +15,7 @@ public class Mine extends Etat {
 
     public Mine(Gimli gimli) {
         super(gimli);
-        getIA().setTemps(getIA().getTemps() + getuTime()); //Ajout du temps
+        getIA().ajoutTemps(getuTime()); //Ajout du temps
     }
 
     @Override
@@ -32,7 +32,7 @@ public class Mine extends Etat {
         }
         //Probabilité de 0.89077 qu'il aille à la Mine depuis la Mine
         else {
-            getIA().setTemps(getIA().getTemps() + getuTime()); //Ajout du temps (pour simuler la pause)
+            getIA().ajoutTemps(getuTime()); //Ajout du temps (pour simuler la pause)
             return new Mine(this.getIA());
         }
     }

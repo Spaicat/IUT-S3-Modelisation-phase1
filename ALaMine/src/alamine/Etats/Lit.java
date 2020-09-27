@@ -10,7 +10,7 @@ public class Lit extends Etat {
 
     public Lit(Gimli gimli) {
         super(gimli);
-        getIA().setTemps(getIA().getTemps() + 3*getuTime()); //Ajout du temps (1h)
+        getIA().ajoutTemps(getuTime()); //Ajout du temps --> pas 1h car pris en compte dans les probas
     }
 
     @Override

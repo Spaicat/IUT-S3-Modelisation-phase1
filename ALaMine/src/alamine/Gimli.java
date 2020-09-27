@@ -7,69 +7,45 @@ import alamine.Etats.*;
  * @author Thibault
  */
 public class Gimli {
-    //Alcoolémie en g/L
-    private double alcool;
-    //Poids de Gimli en kg
-    private double poids;
     //Temps en minutes
     private int temps;
     private Etat etatCourant;
-    private float probaT; 
-    private float nombreAction;
-
-    public double getAlcool() {
-        return alcool;
-    }
-
-    /**
-     * Change le taux d'alcool
-     * @param alcool Alcool à ajouter (ou soustraire)
-     */
-    public void changeAlcool(double alcool) {
-        this.alcool = this.alcool + alcool; //Erreur de précision
-        if(this.alcool < 0){ //Si alcool négatif -> remettre à 0
-            this.alcool = 0;
-        }
-        this.poids = 102 + (6*this.alcool)/1000;
-    }
+    private double tempsLit;
+    private double tempsMine;
+    private double tempsTaverne;
 
     public int getTemps() {
         return temps;
     }
 
-    public void setTemps(int temps) {
-        this.temps = temps;
-    }
-    
-    public void setProbaT( float probaT){
-        this.probaT = probaT; 
-    }
-    
-    public float getProbaT(){
-        return probaT;
+    public void ajoutTemps(int temps) {
+        if (this.etatCourant instanceof Lit) {
+            this.tempsLit += temps;
+        }
+        else if (this.etatCourant instanceof Mine) {
+            this.tempsMine += temps;
+        }
+        else {
+            this.tempsTaverne += temps;
+        }
+        this.temps += temps;
     }
 
     public Gimli() {
-        this.alcool = 0;
-        this.poids = 102;
         this.temps = 0;
         this.etatCourant = new Mine(this);
-        this.nombreAction = 1;
     }
 
     public void start() {
         for (int i = 0;i<1000000;i++){ 
             etatCourant = etatCourant.transition();
-            this.nombreAction += 1;
         }
-    }
-
-    /**
-     * Gimli boit une bière
-     * @param nbBiere nombre de bière qu'il boit
-     */
-    public void boitBiere(int nbBiere) {
-        this.alcool += ((500 * 0.07 * 0.8)/(0.7 * poids)*nbBiere); // Calcul du nombre de gramme dans le sang injecter a chaque bière naine :
-                                                                 // (Volume de la bière(ml) * degré d'alcool * 0.8)/ (coef diffusion (0.7 pour gimli) * le poids de Gimli (102kg)) 
+        double tempsMoyenneLit = (tempsLit / ((tempsLit+tempsMine+tempsTaverne)/1440));
+        double tempsMoyenneMine = (tempsMine / ((tempsLit+tempsMine+tempsTaverne)/1440));
+        double tempsMoyenneTaverne = (tempsTaverne / ((tempsLit+tempsMine+tempsTaverne)/1440));
+        System.out.println("Activité de Gimli étudié sur " + (int)((tempsLit+tempsMine+tempsTaverne)/1440) + " jours");
+        System.out.println("Gimli passe en moyenne " + tempsMoyenneLit + " minutes (~" + (int)(tempsMoyenneLit/60) + "h " + (int)(tempsMoyenneLit%60) + "m " + (int)(((tempsMoyenneLit%60)*60)%60) + "s) au lit par jour");
+        System.out.println("Gimli passe en moyenne " + tempsMoyenneMine + " minutes (~" + (int)(tempsMoyenneMine/60) + "h " + (int)(tempsMoyenneMine%60) + "m " + (int)(((tempsMoyenneMine%60)*60)%60) + "s) à la mine par jour");
+        System.out.println("Gimli passe en moyenne " + tempsMoyenneTaverne + " minutes (~" + (int)(tempsMoyenneTaverne/60) + "h " + (int)(tempsMoyenneTaverne%60) + "m " + (int)(((tempsMoyenneTaverne%60)*60)%60) + "s) à la taverne par jour");
     }
 }
