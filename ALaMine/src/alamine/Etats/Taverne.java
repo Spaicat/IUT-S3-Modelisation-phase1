@@ -25,7 +25,7 @@ public class Taverne extends Etat {
             //S'il a trop bu
             if (getIA().getAlcool() > 8) {
                 return new Lit(this.getIA());
-            }                   
+            }
             else {
                 return new Taverne(this.getIA());
             }
