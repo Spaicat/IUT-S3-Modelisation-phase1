@@ -11,8 +11,8 @@ import alamine.Gimli;
  *
  * @author Thibault
  */
-public class Mine extends Etat {    
-    
+public class Mine extends Etat {
+
     public Mine(Gimli gimli) {
         super(gimli);
         getIA().setTemps(getIA().getTemps() + getuTime()); //Ajout du temps
@@ -20,15 +20,19 @@ public class Mine extends Etat {
 
     @Override
     public Etat transition() {
-        //Probabilité de 0.074
-        if ((Math.random()*101) <= (7.4)) {
+        //On "pioche" un nombre entre 0 et 100
+        double probChoisie = Math.random()*100;
+        //Probabilité de 0.10921 qu'il aille à la Taverne depuis la Mine
+        if (probChoisie <= (10.921)) {
             return new Taverne(this.getIA());
         }
-        else if ((Math.random()*100) <= (7.4)+(0.0001)) {
+        //Probabilité de 0.00002 qu'il aille au Lit depuis la Mine
+        else if (probChoisie <= (10.921)+(0.002)) {
             return new Lit(this.getIA());
         }
+        //Probabilité de 0.89077 qu'il aille à la Mine depuis la Mine
         else {
-            getIA().setTemps(getIA().getTemps() + getuTime()); //Ajout du temps
+            getIA().setTemps(getIA().getTemps() + getuTime()); //Ajout du temps (pour simuler la pause)
             return new Mine(this.getIA());
         }
     }

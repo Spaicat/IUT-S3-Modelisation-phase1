@@ -58,18 +58,10 @@ public class Gimli {
     }
 
     public void start() {
-        //while (temps < 1440*366) {
         for (int i = 0;i<1000000;i++){ 
-            /*String messageReponse = "";
-            while(messageReponse.equals("")) {
-                etatCourant = etatCourant.transition();
-            }*/
-            //System.out.println(etatCourant.getClass().getSimpleName() + " | Alcoolémie : " + alcool);
             etatCourant = etatCourant.transition();
             this.nombreAction += 1;
         }
-        //System.out.println(etatCourant.getClass().getSimpleName() + " | " + alcool);
-        System.out.println("La probabilité que Gimli aille a la taverne est de "+ this.probaT / this.nombreAction);
     }
 
     /**
