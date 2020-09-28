@@ -8,11 +8,10 @@ package alamine.Etats;
 import alamine.Gimli;
 
 /**
- *
+ * Etat Mine
  * @author Thibault
  */
 public class Mine extends Etat {
-
     public Mine(Gimli gimli) {
         super(gimli);
         getIA().ajoutTemps(getuTime()); //Ajout du temps

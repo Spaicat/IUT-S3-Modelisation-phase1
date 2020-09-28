@@ -5,7 +5,7 @@ import alaminesimulateur.Etats.TravailMine;
 
 /**
  *
- * @author Thibault
+ * @author Thibault, Grégoire
  */
 public class Gimli {
     //Alcoolémie en g/L

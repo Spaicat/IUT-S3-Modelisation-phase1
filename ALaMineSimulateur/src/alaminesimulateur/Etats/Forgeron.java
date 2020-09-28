@@ -3,15 +3,14 @@ package alaminesimulateur.Etats;
 import alaminesimulateur.Gimli;
 
 /**
- *
- * @author Thibault
+ * Etat Forgeron
+ * @author Thibault, Grégoire
  */
 public class Forgeron extends Etat {
-
     public Forgeron(Gimli gimli) {
         super(gimli);
-        getIA().setTemps(getIA().getTemps() + getuTime()); //Ajout du temps
-        getIA().changeAlcool(-0.1);
+        getIA().setTemps(getIA().getTemps() + getuTime()); //Ajout du temps (temps pour réparer la pioche)
+        getIA().changeAlcool(-0.1); //Diminution alcool -> !Travail
     }
 
     @Override
@@ -21,6 +20,7 @@ public class Forgeron extends Etat {
             getIA().setProbaMineTaverne(1);
             return new Taverne(this.getIA());
         }
+        //Sinon il retourne à la mine
         else {
             getIA().setprobaMineMine(1);
             return new TravailMine(this.getIA());

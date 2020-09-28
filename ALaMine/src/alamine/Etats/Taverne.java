@@ -3,7 +3,7 @@ package alamine.Etats;
 import alamine.Gimli;
 
 /**
- *
+ * Etat Taverne
  * @author Thibault
  */
 public class Taverne extends Etat {

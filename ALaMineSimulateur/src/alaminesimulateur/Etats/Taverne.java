@@ -4,14 +4,14 @@ import alaminesimulateur.Gimli;
 
 /**
  *
- * @author tt685736
+ * @author Grégoire
  */
 public class Taverne extends Etat {
 
     public Taverne(Gimli gimli) {
         super(gimli);
         getIA().setTemps(getIA().getTemps() + getuTime()); //Ajout du temps
-        getIA().changeAlcool(-0.1);
+        getIA().changeAlcool(-0.1); //Diminution alcool -> !Travail
     }
 
     @Override
@@ -23,13 +23,13 @@ public class Taverne extends Etat {
             return new TravailMine(this.getIA());
         }
         else {
-
-            getIA().boitBiere((int)(Math.random()*7)); // nombre de bières que Gimli prend a la taverne
-            //S'il a trop bu
+            getIA().boitBiere((int)(Math.random()*7)); //Nombre de bières que Gimli prend à la taverne (En moyenne 3)
+            //S'il a trop bu, il va au lit
             if (getIA().getAlcool() > 8) {
                 getIA().setprobaTaverneRepos(1);                
                 return new Lit(this.getIA());
-            }                   
+            }
+            //Sinon il recommande (réitère l'état Taverne)
             else {
                 getIA().setprobaTaverneTaverne(1);
                 return new Taverne(this.getIA());
