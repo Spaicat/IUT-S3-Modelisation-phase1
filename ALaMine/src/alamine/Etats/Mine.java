@@ -31,7 +31,7 @@ public class Mine extends Etat {
         }
         //Probabilité de 0.89077 qu'il aille à la Mine depuis la Mine
         else {
-            getIA().ajoutTemps(getuTime()); //Ajout du temps (pour simuler la pause)
+            //getIA().ajoutTemps(getuTime()); //Ajout du temps (pour simuler la pause)
             return new Mine(this.getIA());
         }
     }
